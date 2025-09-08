@@ -21,7 +21,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FDFBF7;
+            background-color: #d1c7b4;
             color: #3D3D3D;
         }
         .prompt-block {
