@@ -153,13 +153,6 @@
                                 <div class="prompt-block">Para o seguinte texto [cole um trecho com dados], por favor, encontre e liste as fontes originais para cada uma das estatísticas mencionadas. Forneça links diretos se possível.</div>
                             </div>
                         </div>
-                        <div class="bg-[#F5F2ED] p-6 rounded-lg">
-                             <h3 class="font-semibold text-lg mb-4 text-center">Distribuição de Esforço no Projeto</h3>
-                            <p class="text-sm text-center mb-4 text-gray-600">Este gráfico ilustra uma alocação de tempo típica para criar um e-book usando este método. Note como a pesquisa e a revisão consomem a maior parte do tempo.</p>
-                            <div class="chart-container">
-                                <canvas id="effortChart"></canvas>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
