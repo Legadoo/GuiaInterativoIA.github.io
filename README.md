@@ -1,1 +1,271 @@
-# GuiaInterativoIA.github.io
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Interativo: Crie seu E-book com IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Harmony -->
+    <!-- Application Structure Plan: A task-oriented, multi-phase SPA. The structure is a horizontal stepper/tab navigation representing the e-book creation workflow. This was chosen over a linear document to break the process into manageable steps, prevent information overload, and create an engaging, interactive learning path. The user clicks a phase to reveal detailed instructions, example prompts, and tips for that specific stage, allowing them to focus on one part of the process at a time. This guided flow is more intuitive for a "how-to" guide. -->
+    <!-- Visualization & Content Choices: 
+        1. Process Flow (Main Navigation): Report Info -> E-book creation process. Goal -> Organize/Navigate. Viz -> Interactive tabs (HTML/Tailwind). Interaction -> Click to switch content panes. Justification -> Visually represents the workflow and serves as the primary navigation, which is more intuitive than a simple table of contents. Method -> HTML/CSS/JS.
+        2. Step-by-step instructions: Report Info -> Detailed actions for each phase. Goal -> Inform. Viz -> Styled text blocks with lists and cards. Interaction -> None. Justification -> Clear, scannable format for instructions. Method -> HTML/Tailwind.
+        3. Example Prompts: Report Info -> How to query the AIs. Goal -> Inform. Viz -> Code-style blocks. Interaction -> None. Justification -> Differentiates prompts from regular text, making them easy to copy and understand. Method -> HTML/Tailwind.
+        4. Time Allocation Chart: Report Info -> Effort distribution. Goal -> Inform/Compare. Viz -> Donut Chart. Interaction -> Hover tooltips. Justification -> Provides a quick visual summary of where the user's time will likely be spent, managing expectations. Library -> Chart.js (Canvas).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #3D3D3D;
+        }
+        .prompt-block {
+            background-color: #F5F2ED;
+            border-left: 4px solid #A88B79;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9rem;
+            color: #57453B;
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-item.active {
+            border-bottom-color: #A88B79;
+            color: #A88B79;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#57453B]">Crie seu E-book com IA Avançada</h1>
+            <p class="mt-4 text-lg text-gray-600">Um guia interativo para usar o "ChatGPT-5 Thinking" para estratégia e o "Gemini 2.5 Pro" para pesquisa profunda.</p>
+        </header>
+
+        <main>
+            <div id="process-nav" class="mb-10 border-b border-gray-200">
+                <nav class="flex flex-wrap -mb-px justify-center text-sm font-medium text-center" aria-label="Tabs">
+                    <button class="nav-item p-4 active" data-tab="phase1">
+                        <span class="text-2xl mr-2">1</span> Fase 1: Idealização e Estrutura
+                    </button>
+                    <button class="nav-item p-4" data-tab="phase2">
+                        <span class="text-2xl mr-2">2</span> Fase 2: Pesquisa e Conteúdo
+                    </button>
+                    <button class="nav-item p-4" data-tab="phase3">
+                        <span class="text-2xl mr-2">3</span> Fase 3: Revisão e Refinamento
+                    </button>
+                    <button class="nav-item p-4" data-tab="phase4">
+                        <span class="text-2xl mr-2">4</span> Fase 4: Design e Distribuição
+                    </button>
+                </nav>
+            </div>
+
+            <div id="content-panels">
+                <div id="phase1" class="tab-content bg-white p-6 sm:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-3xl font-bold text-[#A88B79] mb-4">Fase 1: Idealização e Estrutura</h2>
+                    <p class="mb-6 text-gray-700">O objetivo desta fase é usar uma IA criativa e estratégica, como o hipotético "ChatGPT-5 Thinking", para construir a fundação do seu e-book. Aqui, definimos o "o quê", "para quem" e "como" do seu projeto, transformando uma ideia vaga em um plano de ação concreto.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">1. Brainstorming de Temas e Títulos</h3>
+                            <p class="text-gray-600 mb-2">Comece explorando ideias. Mesmo que já tenha um tema, a IA pode ajudar a encontrar ângulos únicos e títulos que cativem seu público-alvo.</p>
+                            <div class="prompt-block">Aja como um especialista em marketing digital e copywriting. Meu público são [descreva seu público, ex: jovens empreendedores de startups de tecnologia]. Gere 15 ideias de títulos para um e-book sobre [seu tópico, ex: estratégias de crescimento viral]. Os títulos devem ser intrigantes e orientados para resultados.</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">2. Definição da Persona</h3>
+                            <p class="text-gray-600 mb-2">Entender para quem você está escrevendo é crucial. A IA pode ajudar a criar um perfil detalhado do seu leitor ideal.</p>
+                            <div class="prompt-block">Crie uma persona detalhada para o leitor ideal de um e-book com o título "[seu título]". Inclua dados demográficos, objetivos, desafios, dores e o que ele espera aprender com este e-book.</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">3. Estruturação do Sumário</h3>
+                            <p class="text-gray-600 mb-2">Transforme seu título em uma estrutura lógica de capítulos. Um bom sumário é o esqueleto do seu e-book e guiará toda a produção de conteúdo.</p>
+                            <div class="prompt-block">Com base no título "[seu título]" e na persona que criamos, desenvolva um sumário detalhado para o e-book. Crie entre 7 e 10 capítulos, cada um com 3 a 5 subtópicos principais a serem abordados. A progressão deve ser lógica, começando com os fundamentos e avançando para estratégias mais complexas.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase2" class="tab-content hidden bg-white p-6 sm:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-3xl font-bold text-[#A88B79] mb-4">Fase 2: Pesquisa e Conteúdo</h2>
+                     <p class="mb-6 text-gray-700">Agora, com a estrutura definida, usamos uma IA com forte capacidade de pesquisa, como o "Gemini 2.5 Pro", para preencher cada capítulo com informações precisas, dados atualizados e exemplos relevantes. O foco aqui é a profundidade e a qualidade do conteúdo.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">1. Pesquisa e Redação por Capítulo</h3>
+                            <p class="text-gray-600 mb-2">Trabalhe em um capítulo de cada vez. Forneça o contexto do sumário para que a IA entenda onde a peça se encaixa no todo.</p>
+                            <div class="prompt-block">Estou escrevendo um e-book. O capítulo atual é sobre "[título do capítulo do seu sumário]". Os subtópicos são: [liste os subtópicos]. Faça uma pesquisa aprofundada sobre o assunto e escreva um texto de aproximadamente 1000 palavras que cubra esses subtópicos de forma clara e didática. Use um tom [descreva o tom, ex: profissional, mas acessível]. Se possível, inclua estatísticas recentes (de 2024 ou 2025) e cite as fontes.</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">2. Geração de Exemplos e Analogias</h3>
+                            <p class="text-gray-600 mb-2">Para tornar conceitos complexos mais fáceis de entender, peça à IA para criar exemplos práticos, estudos de caso simplificados ou analogias.</p>
+                            <div class="prompt-block">No contexto do capítulo sobre [tópico do capítulo], explique o conceito de [conceito complexo] de três maneiras diferentes: 1. Uma definição técnica simples. 2. Uma analogia com algo do dia a dia. 3. Um exemplo prático de como uma empresa poderia aplicar isso.</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">3. Criação de Listas e Tabelas</h3>
+                            <p class="text-gray-600 mb-2">Peça para a IA organizar informações em formatos fáceis de consumir, como listas, checklists ou tabelas comparativas.</p>
+                            <div class="prompt-block">Crie um checklist com "10 Passos Essenciais para [tópico relevante do capítulo]". Apresente em formato de lista numerada, com uma breve descrição para cada passo.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase3" class="tab-content hidden bg-white p-6 sm:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-3xl font-bold text-[#A88B79] mb-4">Fase 3: Revisão e Refinamento</h2>
+                    <p class="mb-6 text-gray-700">Nenhum texto gerado por IA é perfeito. Esta fase combina a inteligência artificial com a sua supervisão humana para garantir coesão, precisão, originalidade e, o mais importante, a sua voz autêntica. É aqui que você transforma o rascunho em uma obra finalizada.</p>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">1. Revisão de Coesão e Fluidez</h3>
+                                <p class="text-gray-600 mb-2">Use a IA para polir o texto, melhorar as transições entre parágrafos e garantir um fluxo de leitura agradável.</p>
+                                <div class="prompt-block">Aja como um editor de livros experiente. Leia o texto a seguir [cole um trecho ou capítulo] e sugira melhorias para aumentar a clareza, a fluidez e o engajamento. Reescreva as frases que estiverem confusas ou repetitivas.</div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">2. Checagem de Fatos e Dados</h3>
+                                <p class="text-gray-600 mb-2">Embora as IAs de pesquisa sejam poderosas, a verificação humana é indispensável. Use a própria IA para facilitar esse processo.</p>
+                                <div class="prompt-block">Para o seguinte texto [cole um trecho com dados], por favor, encontre e liste as fontes originais para cada uma das estatísticas mencionadas. Forneça links diretos se possível.</div>
+                            </div>
+                        </div>
+                        <div class="bg-[#F5F2ED] p-6 rounded-lg">
+                             <h3 class="font-semibold text-lg mb-4 text-center">Distribuição de Esforço no Projeto</h3>
+                            <p class="text-sm text-center mb-4 text-gray-600">Este gráfico ilustra uma alocação de tempo típica para criar um e-book usando este método. Note como a pesquisa e a revisão consomem a maior parte do tempo.</p>
+                            <div class="chart-container">
+                                <canvas id="effortChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase4" class="tab-content hidden bg-white p-6 sm:p-8 rounded-lg shadow-sm">
+                    <h2 class="text-3xl font-bold text-[#A88B79] mb-4">Fase 4: Design e Distribuição</h2>
+                    <p class="mb-6 text-gray-700">Com o conteúdo finalizado, o próximo passo é transformá-lo em um produto visualmente atraente e distribuí-lo para o seu público. A IA também pode ser uma excelente assistente nesta fase criativa e logística.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">1. Ideias para Design e Capa</h3>
+                            <p class="text-gray-600 mb-2">Use a IA para gerar conceitos visuais para a capa e o layout interno do seu e-book. Descreva o tema e o público para obter ideias mais relevantes.</p>
+                            <div class="prompt-block">Aja como um diretor de arte. Para um e-book com o título "[seu título]", voltado para [sua persona], descreva 5 conceitos visuais distintos para a capa. Para cada conceito, sugira uma paleta de cores, estilo de tipografia e elementos gráficos.</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">2. Texto para Marketing e Divulgação</h3>
+                            <p class="text-gray-600 mb-2">Crie os textos necessários para promover seu e-book: descrição para a página de vendas, posts para redes sociais, e-mails de lançamento, etc.</p>
+                            <div class="prompt-block">Escreva um texto de 200 palavras para a página de vendas do meu e-book "[seu título]". O texto deve ser persuasivo, destacar os principais benefícios para o leitor (com base na persona) e terminar com uma chamada para ação clara.</div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">3. Ferramentas e Próximos Passos</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li><strong>Diagramação:</strong> Use ferramentas como Canva, Google Docs ou Adobe InDesign para montar o e-book com o texto e os conceitos de design.</li>
+                                <li><strong>Exportação:</strong> Salve o arquivo final em formatos populares como PDF (universal) ou EPUB (para leitores digitais como Kindle).</li>
+                                <li><strong>Distribuição:</strong> Publique em plataformas como Amazon KDP, Hotmart, Eduzz ou diretamente em seu próprio site.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('#process-nav .nav-item');
+            const panels = document.querySelectorAll('#content-panels .tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    const targetPanelId = tab.getAttribute('data-tab');
+                    
+                    panels.forEach(panel => {
+                        if (panel.id === targetPanelId) {
+                            panel.classList.remove('hidden');
+                        } else {
+                            panel.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const ctx = document.getElementById('effortChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Idealização (Fase 1)', 'Pesquisa (Fase 2)', 'Revisão (Fase 3)', 'Design (Fase 4)'],
+                    datasets: [{
+                        label: 'Distribuição de Esforço',
+                        data: [15, 45, 25, 15],
+                        backgroundColor: [
+                            '#D1BFA7',
+                            '#A88B79',
+                            '#7E6C5F',
+                            '#C7B7A8'
+                        ],
+                        borderColor: '#FDFBF7',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#3D3D3D',
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
